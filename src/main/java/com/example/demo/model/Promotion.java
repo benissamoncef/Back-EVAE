@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.time.Instant;
 
 @Entity
@@ -14,12 +13,11 @@ public class Promotion {
     private String anneePro;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CODE_FORMATION")
+    @JoinColumn(name = "CODE_FORMATION", nullable = false)
     private Formation formation;
 
     @Column(name = "SIGLE_PRO", nullable = false, length = 5)
     private String siglePro;
-
 
 
     public String getAnneePro() {

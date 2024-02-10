@@ -43,6 +43,14 @@ public class EtudiantService {
         }
     }
 
+    public Etudiant getEtudiantByNE(String id) {
+        Etudiant etudiant = etudiantDao.findByNoEtudiantNat(id);
+
+            return etudiant;
+
+    }
+
+
     /**
      * Enregistre un nouveau Etudiant.
      *

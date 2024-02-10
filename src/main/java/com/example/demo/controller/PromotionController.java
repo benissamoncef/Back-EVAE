@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Contrôleur pour gérer les opérations sur les promotions.
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/promotions")
 public class PromotionController {
 

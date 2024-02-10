@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EtudiantDao extends JpaRepository<Etudiant, Long> {
+    Etudiant findByNoEtudiantNat(String id);
 }

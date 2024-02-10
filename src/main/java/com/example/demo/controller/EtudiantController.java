@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.LoginDTO;
 import com.example.demo.model.Etudiant;
 import com.example.demo.service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,7 @@ import java.util.List;
  * Contrôleur pour gérer les opérations sur les étudiants.
  */
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/etudiants")
 public class EtudiantController {
 
@@ -68,5 +71,17 @@ public class EtudiantController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEtudiantById(@PathVariable Long id) {
         return etudiantService.deleteEtudiantById(id);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginRequest) {
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
+        Etudiant etudiant = etudiantService.getEtudiantByNE(username);
+        if (etudiant != null && etudiant.getMotDePasse().equals(password) ) {
+            return ResponseEntity.ok().build();
+        }
+        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
     }
 }
